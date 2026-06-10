@@ -1,0 +1,510 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMO DANAR FIRDHAN ROICHAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Color Palette - Modern Dark Theme */
+            --bg-main: #0f172a;
+            --bg-surface: #1e293b;
+            --bg-surface-hover: #334155;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Main Container Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 350px 1fr;
+                align-items: start;
+            }
+        }
+
+        /* Card Form */
+        .form-card {
+            background-color: var(--bg-surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 2rem;
+        }
+
+        .form-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        input[type="date"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: white;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-cancel {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .btn-cancel:hover {
+            background-color: var(--bg-surface-hover);
+            color: var(--text-main);
+        }
+
+        /* List Section */
+        .list-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .memo-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .memo-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+
+        .memo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .memo-date {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            background-color: rgba(59, 130, 246, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .memo-category {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .memo-body {
+            color: var(--text-main);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .memo-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn-sm {
+            width: auto;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.875rem;
+            border-radius: 6px;
+        }
+
+        .btn-edit {
+            background-color: transparent;
+            color: #fbbf24;
+            border: 1px solid #fbbf24;
+        }
+
+        .btn-edit:hover {
+            background-color: #fbbf24;
+            color: #000;
+        }
+
+        .btn-delete {
+            background-color: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .btn-delete:hover {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--bg-surface);
+            border-radius: var(--radius);
+            border: 1px dashed var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .empty-state svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MEMO DANAR FIRDHAN ROICHAN</h1>
+        <p>Tracker Aktivitas Harian, Kuliah, PKL, dan Finansial</p>
+    </header>
+
+    <div class="container">
+        <!-- Form Section -->
+        <aside>
+            <div class="form-card">
+                <h2 id="formTitle">Tambah Aktivitas Baru</h2>
+                <form id="memoForm">
+                    <input type="hidden" id="memoId">
+                    
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Aktivitas</label>
+                        <input type="date" id="tanggal" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kategori">Kategori</label>
+                        <select id="kategori" required>
+                            <option value="" disabled selected>Pilih kategori...</option>
+                            <option value="Kuliah">Kuliah</option>
+                            <option value="Ngopi">Ngopi</option>
+                            <option value="Nugas">Nugas</option>
+                            <option value="Melanjutkan Laporan PKL">Melanjutkan Laporan PKL</option>
+                            <option value="Laporan SCP2">Laporan SCP2</option>
+                            <option value="Menabung">Menabung</option>
+                            <option value="Aktivitas Lainnya">Aktivitas Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="catatan">Detail / Catatan</label>
+                        <input type="text" id="catatan" placeholder="Cth: Bab 3 PKL, Nabung Rp 50.000..." autocomplete="off" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                        Simpan Memo
+                    </button>
+                    <button type="button" class="btn-cancel" id="cancelBtn" onclick="resetForm()">Batal Edit</button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- List Section -->
+        <main>
+            <div class="list-section" id="memoList">
+                <!-- Data akan di-render di sini oleh JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- 1. KONFIGURASI BATAS TANGGAL ---
+        const dateInput = document.getElementById('tanggal');
+        const today = new Date();
+        const nextYear = new Date();
+        
+        // Set batas maksimal 1 tahun ke depan
+        nextYear.setFullYear(today.getFullYear() + 1);
+
+        // Fungsi format tanggal untuk input type="date" (YYYY-MM-DD)
+        const formatForInput = (date) => {
+            const d = new Date(date);
+            let month = '' + (d.getMonth() + 1);
+            let day = '' + d.getDate();
+            const year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        };
+
+        // Kunci input kalender (Hanya hari ini sampai 1 tahun ke depan)
+        dateInput.min = formatForInput(today);
+        dateInput.max = formatForInput(nextYear);
+        dateInput.value = formatForInput(today);
+
+
+        // --- 2. SISTEM PENYIMPANAN LOCALSTORAGE ---
+        const STORAGE_KEY = 'MEMO_DANAR_DATA';
+        // Ambil data dari storage, jika kosong gunakan array []
+        let memos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+        const memoForm = document.getElementById('memoForm');
+        const memoList = document.getElementById('memoList');
+        const formTitle = document.getElementById('formTitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+
+        // Fungsi simpan ke browser
+        function saveToStorage() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(memos));
+        }
+
+        // Format tanggal untuk tampilan UI (Contoh: 15 Agustus 2024)
+        function formatDisplayDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+
+
+        // --- 3. FITUR READ (MENAMPILKAN DATA) ---
+        function renderMemos() {
+            memoList.innerHTML = '';
+
+            // Mengurutkan data berdasarkan tanggal (dari yang terdekat)
+            memos.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+
+            // Jika kosong, tampilkan Empty State
+            if (memos.length === 0) {
+                memoList.innerHTML = `
+                    <div class="empty-state">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <h3>Belum ada aktivitas</h3>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Mulai catat aktivitas harian, laporan, atau tabunganmu.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Render Kartu Memo
+            memos.forEach(memo => {
+                const card = document.createElement('div');
+                card.className = 'memo-card';
+                card.innerHTML = `
+                    <div class="memo-header">
+                        <span class="memo-date">${formatDisplayDate(memo.tanggal)}</span>
+                        <span class="memo-category">${memo.kategori}</span>
+                    </div>
+                    <div class="memo-body">
+                        ${memo.catatan}
+                    </div>
+                    <div class="memo-actions">
+                        <button class="btn-sm btn-edit" onclick="editMemo(${memo.id})">Edit</button>
+                        <button class="btn-sm btn-delete" onclick="deleteMemo(${memo.id})">Hapus</button>
+                    </div>
+                `;
+                memoList.appendChild(card);
+            });
+        }
+
+
+        // --- 4. FITUR CREATE & UPDATE (SIMPAN DATA) ---
+        memoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const idInput = document.getElementById('memoId').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const kategori = document.getElementById('kategori').value;
+            const catatan = document.getElementById('catatan').value;
+
+            if (idInput) {
+                // Proses UPDATE data yang sudah ada
+                const index = memos.findIndex(m => m.id === parseInt(idInput));
+                if (index !== -1) {
+                    memos[index] = { id: parseInt(idInput), tanggal, kategori, catatan };
+                }
+            } else {
+                // Proses CREATE data baru
+                const newMemo = {
+                    id: Date.now(), // Generate ID unik menggunakan timestamp
+                    tanggal,
+                    kategori,
+                    catatan
+                };
+                memos.push(newMemo);
+            }
+
+            saveToStorage();
+            renderMemos();
+            resetForm();
+        });
+
+
+        // --- 5. FITUR EDIT (MENGISI FORM) ---
+        window.editMemo = function(id) {
+            const memo = memos.find(m => m.id === id);
+            if (memo) {
+                document.getElementById('memoId').value = memo.id;
+                document.getElementById('tanggal').value = memo.tanggal;
+                document.getElementById('kategori').value = memo.kategori;
+                document.getElementById('catatan').value = memo.catatan;
+
+                formTitle.textContent = 'Edit Aktivitas';
+                submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Update Memo';
+                cancelBtn.style.display = 'block';
+
+                // Scroll ke form (untuk mobile)
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
+
+        // --- 6. FITUR DELETE (MENGHAPUS DATA) ---
+        window.deleteMemo = function(id) {
+            if (confirm('Yakin ingin menghapus memo ini? Data yang dihapus tidak dapat dikembalikan.')) {
+                // Saring array, buang data yang ID nya cocok
+                memos = memos.filter(m => m.id !== id);
+                saveToStorage();
+                renderMemos();
+                
+                // Jika sedang mengedit data yang ternyata dihapus, reset form
+                if(document.getElementById('memoId').value == id) {
+                    resetForm();
+                }
+            }
+        };
+
+
+        // --- 7. RESET FORM KE KONDISI AWAL ---
+        function resetForm() {
+            memoForm.reset();
+            document.getElementById('memoId').value = '';
+            dateInput.value = formatForInput(today); // Kembalikan ke hari ini
+            
+            formTitle.textContent = 'Tambah Aktivitas Baru';
+            submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Simpan Memo';
+            cancelBtn.style.display = 'none';
+        }
+
+        // Render data pertama kali saat halaman dimuat
+        renderMemos();
+
+    </script>
+</body>
+</html>
+
+```
