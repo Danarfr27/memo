@@ -4,29 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEMO DANAR FIRDHAN ROICHAN</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Color Palette - Modern Dark Theme */
-            --bg-main: #0f172a;
-            --bg-surface: #1e293b;
-            --bg-surface-hover: #334155;
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --danger: #ef4444;
-            --danger-hover: #dc2626;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --radius: 12px;
-            --transition: all 0.3s ease;
+            --bg-main: #050508;
+            --bg-surface: #0a0a12;
+            --bg-surface-hover: #12121f;
+            --primary: #00f0ff;
+            --primary-glow: rgba(0, 240, 255, 0.3);
+            --secondary: #ff00ff;
+            --secondary-glow: rgba(255, 0, 255, 0.3);
+            --accent: #ffea00;
+            --danger: #ff0040;
+            --danger-glow: rgba(255, 0, 64, 0.3);
+            --success: #00ff88;
+            --text-main: #e0e0ff;
+            --text-muted: #6b6b8a;
+            --border-color: #1a1a2e;
+            --radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
@@ -37,6 +39,99 @@
             flex-direction: column;
             align-items: center;
             padding: 2rem 1rem;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Parallax Background */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50px, -50px); }
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: floatOrb 15s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--accent);
+            bottom: 10%;
+            left: 40%;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 20px) scale(0.9); }
+            75% { transform: translate(20px, 30px) scale(1.05); }
+        }
+
+        /* Scanline Effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1),
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            opacity: 0.3;
         }
 
         /* Header */
@@ -45,21 +140,91 @@
             margin-bottom: 2.5rem;
             width: 100%;
             max-width: 1000px;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .header-border {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), var(--primary), transparent);
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        .header-border-bottom {
+            top: auto;
+            bottom: 0;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         h1 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px var(--primary-glow);
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+        }
+
+        .header-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--success);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
         }
 
         /* Main Container Layout */
@@ -69,6 +234,8 @@
             gap: 2rem;
             width: 100%;
             max-width: 1000px;
+            position: relative;
+            z-index: 1;
         }
 
         @media (min-width: 768px) {
@@ -80,33 +247,56 @@
 
         /* Card Form */
         .form-card {
-            background-color: var(--bg-surface);
+            background: linear-gradient(135deg, rgba(10, 10, 18, 0.9), rgba(18, 18, 31, 0.9));
             padding: 1.5rem;
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 
+                0 0 20px rgba(0, 240, 255, 0.05),
+                inset 0 0 20px rgba(0, 240, 255, 0.02);
             position: sticky;
             top: 2rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+            animation: borderGlow 3s ease-in-out infinite;
         }
 
         .form-card h2 {
-            font-size: 1.25rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            color: var(--text-main);
+            color: var(--primary);
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .form-group {
             margin-bottom: 1.25rem;
+            position: relative;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-muted);
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         input[type="date"],
@@ -114,25 +304,38 @@
         select {
             width: 100%;
             padding: 0.75rem 1rem;
-            background-color: var(--bg-main);
+            background: rgba(5, 5, 8, 0.8);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 0.95rem;
             outline: none;
             transition: var(--transition);
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
         }
 
         input:focus, select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            box-shadow: 
+                0 0 0 3px rgba(0, 240, 255, 0.1),
+                0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        /* Custom Select Arrow */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2300f0ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
         }
 
         button {
             width: 100%;
             padding: 0.75rem 1rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -141,20 +344,44 @@
             justify-content: center;
             align-items: center;
             gap: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
         }
 
         .btn-submit {
-            background-color: var(--primary);
-            color: white;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(0, 240, 255, 0.2));
+            color: var(--primary);
             margin-top: 1rem;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
         }
 
         .btn-submit:hover {
-            background-color: var(--primary-hover);
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 240, 255, 0.3));
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+            transform: translateY(-2px);
         }
 
         .btn-cancel {
-            background-color: transparent;
+            background: transparent;
             color: var(--text-muted);
             border: 1px solid var(--border-color);
             margin-top: 0.5rem;
@@ -162,8 +389,9 @@
         }
 
         .btn-cancel:hover {
-            background-color: var(--bg-surface-hover);
-            color: var(--text-main);
+            background: rgba(255, 0, 64, 0.1);
+            border-color: var(--danger);
+            color: var(--danger);
         }
 
         /* List Section */
@@ -174,7 +402,7 @@
         }
 
         .memo-card {
-            background-color: var(--bg-surface);
+            background: linear-gradient(135deg, rgba(10, 10, 18, 0.9), rgba(18, 18, 31, 0.9));
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             padding: 1.25rem;
@@ -182,12 +410,33 @@
             flex-direction: column;
             gap: 1rem;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .memo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .memo-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 240, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 10px 30px -5px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(0, 240, 255, 0.05);
+        }
+
+        .memo-card:hover::before {
+            opacity: 1;
         }
 
         .memo-header {
@@ -196,27 +445,38 @@
             align-items: center;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .memo-date {
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--primary);
-            background-color: rgba(59, 130, 246, 0.1);
+            background: rgba(0, 240, 255, 0.1);
             padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+            border-radius: 4px;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
         }
 
         .memo-category {
             font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: var(--secondary);
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .memo-body {
             color: var(--text-main);
             font-size: 1rem;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
         }
 
         .memo-actions {
@@ -229,40 +489,54 @@
         .btn-sm {
             width: auto;
             padding: 0.4rem 0.8rem;
-            font-size: 0.875rem;
-            border-radius: 6px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .btn-edit {
-            background-color: transparent;
-            color: #fbbf24;
-            border: 1px solid #fbbf24;
+            background: rgba(255, 234, 0, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
         }
 
         .btn-edit:hover {
-            background-color: #fbbf24;
-            color: #000;
+            background: rgba(255, 234, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 234, 0, 0.2);
         }
 
         .btn-delete {
-            background-color: transparent;
+            background: rgba(255, 0, 64, 0.1);
             color: var(--danger);
             border: 1px solid var(--danger);
         }
 
         .btn-delete:hover {
-            background-color: var(--danger);
-            color: white;
+            background: rgba(255, 0, 64, 0.2);
+            box-shadow: 0 0 15px rgba(255, 0, 64, 0.2);
         }
 
         /* Empty State */
         .empty-state {
             text-align: center;
             padding: 3rem 1rem;
-            background-color: var(--bg-surface);
+            background: linear-gradient(135deg, rgba(10, 10, 18, 0.9), rgba(18, 18, 31, 0.9));
             border-radius: var(--radius);
             border: 1px dashed var(--border-color);
             color: var(--text-muted);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .empty-state::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--danger), transparent);
+            animation: borderGlow 3s ease-in-out infinite;
         }
 
         .empty-state svg {
@@ -270,24 +544,168 @@
             height: 48px;
             margin-bottom: 1rem;
             opacity: 0.5;
+            stroke: var(--primary);
+        }
+
+        .empty-state h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        /* Glitch Effect on Header */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 2s infinite linear alternate-reverse;
+            color: var(--primary);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 3s infinite linear alternate-reverse;
+            color: var(--secondary);
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(40% 0 40% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 0); }
+            80% { clip-path: inset(80% 0 0% 0); transform: translate(2px, 2px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(60% 0 20% 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+            80% { clip-path: inset(0% 0 80% 0); transform: translate(-2px, -2px); }
+        }
+
+        /* Typing Effect */
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end);
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Corner Decorations */
+        .corner-decoration {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            opacity: 0.5;
+        }
+
+        .corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .corner-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+        .corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--secondary), var(--primary));
+        }
+
+        /* Responsive */
+        @media (max-width: 767px) {
+            h1 {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+
+            .form-card {
+                position: relative;
+                top: 0;
+            }
+
+            .memo-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .memo-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .btn-sm {
+                flex: 1;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Parallax Background -->
+    <div class="parallax-bg">
+        <div class="grid-overlay"></div>
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+    </div>
+
+    <!-- Scanline Effect -->
+    <div class="scanlines"></div>
 
     <header>
-        <h1>MEMO DANAR FIRDHAN ROICHAN</h1>
+        <div class="header-border"></div>
+        <h1 class="glitch" data-text="MEMO DANAR FIRDHAN ROICHAN">MEMO DANAR FIRDHAN ROICHAN</h1>
         <p>Tracker Aktivitas Harian, Kuliah, PKL, dan Finansial</p>
+        <div class="header-status">
+            <span class="status-dot"></span>
+            <span>SYSTEM ONLINE</span>
+        </div>
+        <div class="header-border header-border-bottom"></div>
     </header>
 
     <div class="container">
         <!-- Form Section -->
         <aside>
             <div class="form-card">
+                <div class="corner-decoration corner-tl"></div>
+                <div class="corner-decoration corner-tr"></div>
+                <div class="corner-decoration corner-bl"></div>
+                <div class="corner-decoration corner-br"></div>
+
                 <h2 id="formTitle">Tambah Aktivitas Baru</h2>
                 <form id="memoForm">
                     <input type="hidden" id="memoId">
-                    
+
                     <div class="form-group">
                         <label for="tanggal">Tanggal Aktivitas</label>
                         <input type="date" id="tanggal" required>
@@ -334,7 +752,7 @@
         const dateInput = document.getElementById('tanggal');
         const today = new Date();
         const nextYear = new Date();
-        
+
         // Set batas maksimal 1 tahun ke depan
         nextYear.setFullYear(today.getFullYear() + 1);
 
@@ -393,7 +811,7 @@
                     <div class="empty-state">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                         <h3>Belum ada aktivitas</h3>
-                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Mulai catat aktivitas harian, laporan, atau tabunganmu.</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Mulai catat aktivitas harian, laporan, atau tabunganmu.</p>
                     </div>
                 `;
                 return;
@@ -404,6 +822,10 @@
                 const card = document.createElement('div');
                 card.className = 'memo-card';
                 card.innerHTML = `
+                    <div class="corner-decoration corner-tl"></div>
+                    <div class="corner-decoration corner-tr"></div>
+                    <div class="corner-decoration corner-bl"></div>
+                    <div class="corner-decoration corner-br"></div>
                     <div class="memo-header">
                         <span class="memo-date">${formatDisplayDate(memo.tanggal)}</span>
                         <span class="memo-category">${memo.kategori}</span>
@@ -479,7 +901,7 @@
                 memos = memos.filter(m => m.id !== id);
                 saveToStorage();
                 renderMemos();
-                
+
                 // Jika sedang mengedit data yang ternyata dihapus, reset form
                 if(document.getElementById('memoId').value == id) {
                     resetForm();
@@ -493,7 +915,7 @@
             memoForm.reset();
             document.getElementById('memoId').value = '';
             dateInput.value = formatForInput(today); // Kembalikan ke hari ini
-            
+
             formTitle.textContent = 'Tambah Aktivitas Baru';
             submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Simpan Memo';
             cancelBtn.style.display = 'none';
@@ -505,5 +927,3 @@
     </script>
 </body>
 </html>
-
-```
