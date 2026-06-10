@@ -18,6 +18,8 @@
             --danger: #ff0040;
             --danger-glow: rgba(255, 0, 64, 0.3);
             --success: #00ff88;
+            --success-glow: rgba(0, 255, 136, 0.3);
+            --warning: #ff8800;
             --text-main: #e0e0ff;
             --text-muted: #6b6b8a;
             --border-color: #1a1a2e;
@@ -25,11 +27,7 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-main);
@@ -44,70 +42,38 @@
             position: relative;
         }
 
-        /* Parallax Background */
+        /* ===== PARALLAX BACKGROUND ===== */
         .parallax-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1;
             overflow: hidden;
         }
-
         .grid-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            background-image: 
+            top: 0; left: 0;
+            width: 200%; height: 200%;
+            background-image:
                 linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: gridMove 20s linear infinite;
         }
-
         @keyframes gridMove {
             0% { transform: translate(0, 0); }
             100% { transform: translate(-50px, -50px); }
         }
-
         .floating-orb {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.15;
+            opacity: 0.12;
             animation: floatOrb 15s ease-in-out infinite;
         }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--primary);
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--secondary);
-            top: 60%;
-            right: 10%;
-            animation-delay: -5s;
-        }
-
-        .orb-3 {
-            width: 250px;
-            height: 250px;
-            background: var(--accent);
-            bottom: 10%;
-            left: 40%;
-            animation-delay: -10s;
-        }
-
+        .orb-1 { width: 400px; height: 400px; background: var(--primary); top: 10%; left: 10%; animation-delay: 0s; }
+        .orb-2 { width: 300px; height: 300px; background: var(--secondary); top: 60%; right: 10%; animation-delay: -5s; }
+        .orb-3 { width: 250px; height: 250px; background: var(--accent); bottom: 10%; left: 40%; animation-delay: -10s; }
         @keyframes floatOrb {
             0%, 100% { transform: translate(0, 0) scale(1); }
             25% { transform: translate(30px, -30px) scale(1.1); }
@@ -115,13 +81,11 @@
             75% { transform: translate(20px, 30px) scale(1.05); }
         }
 
-        /* Scanline Effect */
+        /* ===== SCANLINE EFFECT ===== */
         .scanlines {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 9999;
             background: repeating-linear-gradient(
@@ -134,40 +98,31 @@
             opacity: 0.3;
         }
 
-        /* Header */
+        /* ===== HEADER ===== */
         header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
             width: 100%;
             max-width: 1000px;
             position: relative;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
         }
-
         .header-border {
             position: absolute;
-            top: 0;
-            left: 50%;
+            top: 0; left: 50%;
             transform: translateX(-50%);
-            width: 80%;
-            height: 2px;
+            width: 80%; height: 2px;
             background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), var(--primary), transparent);
             animation: borderGlow 3s ease-in-out infinite;
         }
-
-        .header-border-bottom {
-            top: auto;
-            bottom: 0;
-        }
-
+        .header-border-bottom { top: auto; bottom: 0; }
         @keyframes borderGlow {
             0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
-
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
@@ -176,58 +131,187 @@
             margin-bottom: 0.5rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 0 30px var(--primary-glow);
-            position: relative;
         }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        }
-
         header p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-family: 'Share Tech Mono', monospace;
             letter-spacing: 2px;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
-
         .header-status {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--success);
             border: 1px solid rgba(0, 255, 136, 0.3);
-            padding: 0.3rem 1rem;
+            padding: 0.25rem 0.8rem;
             border-radius: 20px;
             background: rgba(0, 255, 136, 0.05);
         }
-
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 8px; height: 8px;
             background: var(--success);
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
             box-shadow: 0 0 10px var(--success);
         }
-
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(0.8); }
         }
 
-        /* Main Container Layout */
+        /* ===== DASHBOARD STATS ===== */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(10, 10, 18, 0.9), rgba(18, 18, 31, 0.9));
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+        }
+        .stat-card:nth-child(1)::before { background: linear-gradient(90deg, transparent, var(--primary), transparent); }
+        .stat-card:nth-child(2)::before { background: linear-gradient(90deg, transparent, var(--secondary), transparent); }
+        .stat-card:nth-child(3)::before { background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+        .stat-card:nth-child(4)::before { background: linear-gradient(90deg, transparent, var(--success), transparent); }
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .stat-card:nth-child(1) .stat-value { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
+        .stat-card:nth-child(2) .stat-value { color: var(--secondary); text-shadow: 0 0 15px var(--secondary-glow); }
+        .stat-card:nth-child(3) .stat-value { color: var(--accent); text-shadow: 0 0 15px rgba(255, 234, 0, 0.3); }
+        .stat-card:nth-child(4) .stat-value { color: var(--success); text-shadow: 0 0 15px var(--success-glow); }
+        .stat-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        @media (min-width: 768px) {
+            .dashboard { grid-template-columns: repeat(4, 1fr); }
+            .stat-value { font-size: 2rem; }
+        }
+
+        /* ===== SEARCH & FILTER BAR ===== */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.5rem;
+            background: rgba(5, 5, 8, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1), 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+        .search-box svg {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 16px; height: 16px;
+        }
+        .filter-select {
+            padding: 0.6rem 2.5rem 0.6rem 1rem;
+            background: rgba(5, 5, 8, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+            font-family: 'Rajdhani', sans-serif;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2300f0ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            cursor: pointer;
+        }
+        .filter-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+        }
+        .btn-export {
+            padding: 0.6rem 1rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            border-radius: 6px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+        .btn-export:hover {
+            background: rgba(0, 255, 136, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+        }
+        .btn-clear {
+            padding: 0.6rem 1rem;
+            background: rgba(255, 0, 64, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            border-radius: 6px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .btn-clear:hover {
+            background: rgba(255, 0, 64, 0.2);
+            box-shadow: 0 0 15px rgba(255, 0, 64, 0.2);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
         .container {
             display: grid;
             grid-template-columns: 1fr;
@@ -237,44 +321,34 @@
             position: relative;
             z-index: 1;
         }
-
         @media (min-width: 768px) {
-            .container {
-                grid-template-columns: 350px 1fr;
-                align-items: start;
-            }
+            .container { grid-template-columns: 350px 1fr; align-items: start; }
         }
 
-        /* Card Form */
+        /* ===== FORM CARD ===== */
         .form-card {
             background: linear-gradient(135deg, rgba(10, 10, 18, 0.9), rgba(18, 18, 31, 0.9));
             padding: 1.5rem;
             border-radius: var(--radius);
             border: 1px solid var(--border-color);
-            box-shadow: 
-                0 0 20px rgba(0, 240, 255, 0.05),
-                inset 0 0 20px rgba(0, 240, 255, 0.02);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.05), inset 0 0 20px rgba(0, 240, 255, 0.02);
             position: sticky;
             top: 2rem;
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
         }
-
         .form-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
             animation: borderGlow 3s ease-in-out infinite;
         }
-
         .form-card h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 1.5rem;
             color: var(--primary);
             border-bottom: 1px solid var(--border-color);
@@ -282,26 +356,21 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-            position: relative;
-        }
-
+        .form-group { margin-bottom: 1.25rem; position: relative; }
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-muted);
             font-family: 'Share Tech Mono', monospace;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-
         input[type="date"],
         input[type="text"],
-        select {
+        select,
+        textarea {
             width: 100%;
             padding: 0.75rem 1rem;
             background: rgba(5, 5, 8, 0.8);
@@ -314,15 +383,14 @@
             font-family: 'Rajdhani', sans-serif;
             letter-spacing: 1px;
         }
-
-        input:focus, select:focus {
-            border-color: var(--primary);
-            box-shadow: 
-                0 0 0 3px rgba(0, 240, 255, 0.1),
-                0 0 20px rgba(0, 240, 255, 0.1);
+        textarea {
+            resize: vertical;
+            min-height: 80px;
         }
-
-        /* Custom Select Arrow */
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1), 0 0 20px rgba(0, 240, 255, 0.1);
+        }
         select {
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2300f0ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -330,13 +398,42 @@
             background-position: right 1rem center;
             padding-right: 2.5rem;
         }
+        .priority-select {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .priority-option {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            background: rgba(5, 5, 8, 0.8);
+        }
+        .priority-option:hover { border-color: var(--primary); }
+        .priority-option.active {
+            border-color: var(--primary);
+            background: rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+        .priority-option[data-priority="high"] { color: var(--danger); }
+        .priority-option[data-priority="high"].active { background: rgba(255, 0, 64, 0.1); border-color: var(--danger); box-shadow: 0 0 10px rgba(255, 0, 64, 0.1); }
+        .priority-option[data-priority="medium"] { color: var(--warning); }
+        .priority-option[data-priority="medium"].active { background: rgba(255, 136, 0, 0.1); border-color: var(--warning); box-shadow: 0 0 10px rgba(255, 136, 0, 0.1); }
+        .priority-option[data-priority="low"] { color: var(--success); }
+        .priority-option[data-priority="low"].active { background: rgba(0, 255, 136, 0.1); border-color: var(--success); box-shadow: 0 0 10px rgba(0, 255, 136, 0.1); }
 
         button {
             width: 100%;
             padding: 0.75rem 1rem;
             border: none;
             border-radius: 6px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
@@ -350,22 +447,15 @@
             position: relative;
             overflow: hidden;
         }
-
         button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
             transition: left 0.5s;
         }
-
-        button:hover::before {
-            left: 100%;
-        }
-
+        button:hover::before { left: 100%; }
         .btn-submit {
             background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(0, 240, 255, 0.2));
             color: var(--primary);
@@ -373,13 +463,11 @@
             border: 1px solid var(--primary);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
         }
-
         .btn-submit:hover {
             background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(0, 240, 255, 0.3));
             box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
             transform: translateY(-2px);
         }
-
         .btn-cancel {
             background: transparent;
             color: var(--text-muted);
@@ -387,19 +475,14 @@
             margin-top: 0.5rem;
             display: none;
         }
-
         .btn-cancel:hover {
             background: rgba(255, 0, 64, 0.1);
             border-color: var(--danger);
             color: var(--danger);
         }
 
-        /* List Section */
-        .list-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+        /* ===== LIST SECTION ===== */
+        .list-section { display: flex; flex-direction: column; gap: 1rem; }
 
         .memo-card {
             background: linear-gradient(135deg, rgba(10, 10, 18, 0.9), rgba(18, 18, 31, 0.9));
@@ -414,30 +497,25 @@
             overflow: hidden;
             backdrop-filter: blur(10px);
         }
-
         .memo-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            top: 0; left: 0;
+            width: 3px; height: 100%;
             opacity: 0;
             transition: opacity 0.3s;
         }
-
         .memo-card:hover {
             border-color: rgba(0, 240, 255, 0.3);
             transform: translateY(-3px);
-            box-shadow: 
-                0 10px 30px -5px rgba(0, 0, 0, 0.5),
-                0 0 30px rgba(0, 240, 255, 0.05);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.05);
         }
-
-        .memo-card:hover::before {
-            opacity: 1;
-        }
+        .memo-card:hover::before { opacity: 1; }
+        .memo-card.priority-high { border-left: 3px solid var(--danger); }
+        .memo-card.priority-medium { border-left: 3px solid var(--warning); }
+        .memo-card.priority-low { border-left: 3px solid var(--success); }
+        .memo-card.completed { opacity: 0.6; border-color: var(--success); }
+        .memo-card.completed .memo-body { text-decoration: line-through; color: var(--text-muted); }
 
         .memo-header {
             display: flex;
@@ -448,9 +526,8 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-
         .memo-date {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--primary);
             background: rgba(0, 240, 255, 0.1);
@@ -461,16 +538,40 @@
             border: 1px solid rgba(0, 240, 255, 0.2);
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
         }
-
-        .memo-category {
-            font-size: 0.875rem;
+        .memo-badges {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            font-size: 0.65rem;
             font-weight: 600;
-            color: var(--secondary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
             font-family: 'Share Tech Mono', monospace;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-
+        .badge-category {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(255, 0, 255, 0.2);
+        }
+        .badge-priority-high {
+            background: rgba(255, 0, 64, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(255, 0, 64, 0.2);
+        }
+        .badge-priority-medium {
+            background: rgba(255, 136, 0, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(255, 136, 0, 0.2);
+        }
+        .badge-priority-low {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
         .memo-body {
             color: var(--text-main);
             font-size: 1rem;
@@ -478,45 +579,62 @@
             font-family: 'Rajdhani', sans-serif;
             font-weight: 500;
         }
-
+        .memo-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-family: 'Share Tech Mono', monospace;
+        }
         .memo-actions {
             display: flex;
             justify-content: flex-end;
             gap: 0.5rem;
             margin-top: 0.5rem;
+            flex-wrap: wrap;
         }
-
         .btn-sm {
             width: auto;
-            padding: 0.4rem 0.8rem;
-            font-size: 0.75rem;
+            padding: 0.35rem 0.7rem;
+            font-size: 0.7rem;
             border-radius: 4px;
             font-family: 'Orbitron', sans-serif;
         }
-
+        .btn-done {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+        .btn-done:hover {
+            background: rgba(0, 255, 136, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+        }
+        .btn-done.undone {
+            background: rgba(255, 234, 0, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
         .btn-edit {
             background: rgba(255, 234, 0, 0.1);
             color: var(--accent);
             border: 1px solid var(--accent);
         }
-
         .btn-edit:hover {
             background: rgba(255, 234, 0, 0.2);
             box-shadow: 0 0 15px rgba(255, 234, 0, 0.2);
         }
-
         .btn-delete {
             background: rgba(255, 0, 64, 0.1);
             color: var(--danger);
             border: 1px solid var(--danger);
         }
-
         .btn-delete:hover {
             background: rgba(255, 0, 64, 0.2);
             box-shadow: 0 0 15px rgba(255, 0, 64, 0.2);
         }
 
-        /* Empty State */
+        /* ===== EMPTY STATE ===== */
         .empty-state {
             text-align: center;
             padding: 3rem 1rem;
@@ -527,26 +645,20 @@
             position: relative;
             overflow: hidden;
         }
-
         .empty-state::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
             background: linear-gradient(90deg, transparent, var(--danger), transparent);
             animation: borderGlow 3s ease-in-out infinite;
         }
-
         .empty-state svg {
-            width: 48px;
-            height: 48px;
+            width: 48px; height: 48px;
             margin-bottom: 1rem;
             opacity: 0.5;
             stroke: var(--primary);
         }
-
         .empty-state h3 {
             font-family: 'Orbitron', sans-serif;
             color: var(--text-muted);
@@ -555,120 +667,192 @@
             font-size: 1rem;
         }
 
-        /* Glitch Effect on Header */
-        .glitch {
+        /* ===== TOAST NOTIFICATION ===== */
+        .toast-container {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .toast {
+            background: linear-gradient(135deg, rgba(10, 10, 18, 0.95), rgba(18, 18, 31, 0.95));
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            animation: slideIn 0.3s ease-out;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 350px;
+        }
+        .toast.success { border-color: var(--success); color: var(--success); }
+        .toast.error { border-color: var(--danger); color: var(--danger); }
+        .toast.info { border-color: var(--primary); color: var(--primary); }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        /* ===== CONFIRM MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal {
+            background: linear-gradient(135deg, rgba(10, 10, 18, 0.95), rgba(18, 18, 31, 0.95));
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        .modal::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--danger), var(--secondary), var(--danger));
+        }
+        .modal h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        .modal p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .modal-actions button {
+            flex: 1;
+            font-size: 0.8rem;
+        }
+        .btn-confirm {
+            background: rgba(255, 0, 64, 0.2);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+        .btn-confirm:hover {
+            background: rgba(255, 0, 64, 0.3);
+            box-shadow: 0 0 15px rgba(255, 0, 64, 0.2);
+        }
+        .btn-dismiss {
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        .btn-dismiss:hover {
+            background: rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-section {
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 1.5rem;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-surface);
+            border-radius: 3px;
+            overflow: hidden;
             position: relative;
         }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+        .progress-fill {
             height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+            transition: width 0.5s ease-out;
+            position: relative;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 20px; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-20px); }
+            100% { transform: translateX(20px); }
         }
 
-        .glitch::before {
-            animation: glitch-1 2s infinite linear alternate-reverse;
-            color: var(--primary);
-            z-index: -1;
-        }
-
-        .glitch::after {
-            animation: glitch-2 3s infinite linear alternate-reverse;
-            color: var(--secondary);
-            z-index: -2;
-        }
-
-        @keyframes glitch-1 {
-            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-            20% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
-            40% { clip-path: inset(40% 0 40% 0); transform: translate(2px, -2px); }
-            60% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 0); }
-            80% { clip-path: inset(80% 0 0% 0); transform: translate(2px, 2px); }
-        }
-
-        @keyframes glitch-2 {
-            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-            20% { clip-path: inset(60% 0 20% 0); transform: translate(2px, -2px); }
-            40% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 2px); }
-            60% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
-            80% { clip-path: inset(0% 0 80% 0); transform: translate(-2px, -2px); }
-        }
-
-        /* Typing Effect */
-        .typing-effect {
-            overflow: hidden;
-            white-space: nowrap;
-            animation: typing 3s steps(40, end);
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        /* Corner Decorations */
+        /* ===== CORNER DECORATIONS ===== */
         .corner-decoration {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 15px; height: 15px;
             border: 2px solid var(--primary);
-            opacity: 0.5;
+            opacity: 0.4;
         }
-
         .corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
         .corner-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
         .corner-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
         .corner-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
 
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--secondary), var(--primary)); }
 
-        ::-webkit-scrollbar-track {
-            background: var(--bg-main);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--secondary), var(--primary));
-        }
-
-        /* Responsive */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 767px) {
-            h1 {
-                font-size: 1.5rem;
-                letter-spacing: 1px;
-            }
-
-            .form-card {
-                position: relative;
-                top: 0;
-            }
-
-            .memo-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .memo-actions {
-                width: 100%;
-                justify-content: stretch;
-            }
-
-            .btn-sm {
-                flex: 1;
-            }
+            h1 { font-size: 1.3rem; letter-spacing: 1px; }
+            .form-card { position: relative; top: 0; }
+            .memo-header { flex-direction: column; align-items: flex-start; }
+            .memo-actions { width: 100%; }
+            .btn-sm { flex: 1; justify-content: center; }
+            .toolbar { flex-direction: column; }
+            .search-box { width: 100%; }
+            .dashboard { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
     <!-- Parallax Background -->
@@ -682,16 +866,90 @@
     <!-- Scanline Effect -->
     <div class="scanlines"></div>
 
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <h3>Konfirmasi Hapus</h3>
+            <p>Yakin ingin menghapus memo ini? Data yang dihapus tidak dapat dikembalikan.</p>
+            <div class="modal-actions">
+                <button class="btn-dismiss" onclick="closeModal()">Batal</button>
+                <button class="btn-confirm" id="confirmDeleteBtn">Hapus</button>
+            </div>
+        </div>
+    </div>
+
     <header>
         <div class="header-border"></div>
-        <h1 class="glitch" data-text="MEMO DANAR FIRDHAN ROICHAN">MEMO DANAR FIRDHAN ROICHAN</h1>
+        <h1>MEMO DANAR FIRDHAN ROICHAN</h1>
         <p>Tracker Aktivitas Harian, Kuliah, PKL, dan Finansial</p>
         <div class="header-status">
             <span class="status-dot"></span>
-            <span>SYSTEM ONLINE</span>
+            <span id="systemStatus">SYSTEM ONLINE</span>
         </div>
         <div class="header-border header-border-bottom"></div>
     </header>
+
+    <!-- Dashboard Stats -->
+    <div class="dashboard" id="dashboard">
+        <div class="stat-card">
+            <div class="stat-value" id="statTotal">0</div>
+            <div class="stat-label">Total Memo</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="statDone">0</div>
+            <div class="stat-label">Selesai</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="statPending">0</div>
+            <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="statToday">0</div>
+            <div class="stat-label">Hari Ini</div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-section">
+        <div class="progress-label">
+            <span>Progress Selesai</span>
+            <span id="progressText">0%</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="search-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" placeholder="Cari aktivitas..." oninput="renderMemos()">
+        </div>
+        <select class="filter-select" id="filterCategory" onchange="renderMemos()">
+            <option value="">Semua Kategori</option>
+            <option value="Kuliah">Kuliah</option>
+            <option value="Ngopi">Ngopi</option>
+            <option value="Nugas">Nugas</option>
+            <option value="Melanjutkan Laporan PKL">Melanjutkan Laporan PKL</option>
+            <option value="Laporan SCP2">Laporan SCP2</option>
+            <option value="Menabung">Menabung</option>
+            <option value="Aktivitas Lainnya">Aktivitas Lainnya</option>
+        </select>
+        <select class="filter-select" id="filterStatus" onchange="renderMemos()">
+            <option value="">Semua Status</option>
+            <option value="pending">Pending</option>
+            <option value="done">Selesai</option>
+        </select>
+        <button class="btn-export" onclick="exportData()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export
+        </button>
+        <button class="btn-clear" onclick="clearAllData()">Clear All</button>
+    </div>
 
     <div class="container">
         <!-- Form Section -->
@@ -726,8 +984,18 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Prioritas</label>
+                        <div class="priority-select">
+                            <div class="priority-option" data-priority="high" onclick="setPriority('high')">HIGH</div>
+                            <div class="priority-option active" data-priority="medium" onclick="setPriority('medium')">MED</div>
+                            <div class="priority-option" data-priority="low" onclick="setPriority('low')">LOW</div>
+                        </div>
+                        <input type="hidden" id="priority" value="medium">
+                    </div>
+
+                    <div class="form-group">
                         <label for="catatan">Detail / Catatan</label>
-                        <input type="text" id="catatan" placeholder="Cth: Bab 3 PKL, Nabung Rp 50.000..." autocomplete="off" required>
+                        <textarea id="catatan" placeholder="Cth: Bab 3 PKL, Nabung Rp 50.000..." required></textarea>
                     </div>
 
                     <button type="submit" class="btn-submit" id="submitBtn">
@@ -748,36 +1016,28 @@
     </div>
 
     <script>
-        // --- 1. KONFIGURASI BATAS TANGGAL ---
+        // ===== 1. KONFIGURASI BATAS TANGGAL =====
         const dateInput = document.getElementById('tanggal');
         const today = new Date();
         const nextYear = new Date();
-
-        // Set batas maksimal 1 tahun ke depan
         nextYear.setFullYear(today.getFullYear() + 1);
 
-        // Fungsi format tanggal untuk input type="date" (YYYY-MM-DD)
         const formatForInput = (date) => {
             const d = new Date(date);
             let month = '' + (d.getMonth() + 1);
             let day = '' + d.getDate();
             const year = d.getFullYear();
-
             if (month.length < 2) month = '0' + month;
             if (day.length < 2) day = '0' + day;
-
             return [year, month, day].join('-');
         };
 
-        // Kunci input kalender (Hanya hari ini sampai 1 tahun ke depan)
         dateInput.min = formatForInput(today);
         dateInput.max = formatForInput(nextYear);
         dateInput.value = formatForInput(today);
 
-
-        // --- 2. SISTEM PENYIMPANAN LOCALSTORAGE ---
+        // ===== 2. SISTEM PENYIMPANAN LOCALSTORAGE =====
         const STORAGE_KEY = 'MEMO_DANAR_DATA';
-        // Ambil data dari storage, jika kosong gunakan array []
         let memos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
         const memoForm = document.getElementById('memoForm');
@@ -785,28 +1045,122 @@
         const formTitle = document.getElementById('formTitle');
         const submitBtn = document.getElementById('submitBtn');
         const cancelBtn = document.getElementById('cancelBtn');
+        let deleteTargetId = null;
 
-        // Fungsi simpan ke browser
         function saveToStorage() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(memos));
         }
 
-        // Format tanggal untuk tampilan UI (Contoh: 15 Agustus 2024)
         function formatDisplayDate(dateString) {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             return new Date(dateString).toLocaleDateString('id-ID', options);
         }
 
+        function formatTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = now - date;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            if (days === 0) return 'Hari ini';
+            if (days === 1) return 'Kemarin';
+            if (days < 7) return days + ' hari lalu';
+            if (days < 30) return Math.floor(days / 7) + ' minggu lalu';
+            return Math.floor(days / 30) + ' bulan lalu';
+        }
 
-        // --- 3. FITUR READ (MENAMPILKAN DATA) ---
+        // ===== 3. PRIORITY SELECTOR =====
+        function setPriority(priority) {
+            document.querySelectorAll('.priority-option').forEach(opt => opt.classList.remove('active'));
+            document.querySelector(`.priority-option[data-priority="${priority}"]`).classList.add('active');
+            document.getElementById('priority').value = priority;
+        }
+
+        // ===== 4. TOAST NOTIFICATION =====
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            let icon = '';
+            if (type === 'success') icon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            else if (type === 'error') icon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+            else icon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
+            toast.innerHTML = `${icon}<span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ===== 5. MODAL =====
+        function openModal(id) {
+            deleteTargetId = id;
+            document.getElementById('confirmModal').classList.add('active');
+        }
+        function closeModal() {
+            deleteTargetId = null;
+            document.getElementById('confirmModal').classList.remove('active');
+        }
+        document.getElementById('confirmDeleteBtn').onclick = function() {
+            if (deleteTargetId !== null) {
+                memos = memos.filter(m => m.id !== deleteTargetId);
+                saveToStorage();
+                renderMemos();
+                updateDashboard();
+                if (document.getElementById('memoId').value == deleteTargetId) {
+                    resetForm();
+                }
+                showToast('Memo berhasil dihapus', 'success');
+                closeModal();
+            }
+        };
+
+        // ===== 6. DASHBOARD STATS =====
+        function updateDashboard() {
+            const total = memos.length;
+            const done = memos.filter(m => m.completed).length;
+            const pending = total - done;
+            const todayStr = formatForInput(new Date());
+            const todayCount = memos.filter(m => m.tanggal === todayStr).length;
+            const progress = total > 0 ? Math.round((done / total) * 100) : 0;
+
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statDone').textContent = done;
+            document.getElementById('statPending').textContent = pending;
+            document.getElementById('statToday').textContent = todayCount;
+            document.getElementById('progressText').textContent = progress + '%';
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // ===== 7. FITUR READ (MENAMPILKAN DATA) =====
         function renderMemos() {
             memoList.innerHTML = '';
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const filterCat = document.getElementById('filterCategory').value;
+            const filterStatus = document.getElementById('filterStatus').value;
 
-            // Mengurutkan data berdasarkan tanggal (dari yang terdekat)
-            memos.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+            let filtered = [...memos];
 
-            // Jika kosong, tampilkan Empty State
-            if (memos.length === 0) {
+            if (searchQuery) {
+                filtered = filtered.filter(m =>
+                    m.catatan.toLowerCase().includes(searchQuery) ||
+                    m.kategori.toLowerCase().includes(searchQuery)
+                );
+            }
+            if (filterCat) {
+                filtered = filtered.filter(m => m.kategori === filterCat);
+            }
+            if (filterStatus) {
+                filtered = filtered.filter(m => filterStatus === 'done' ? m.completed : !m.completed);
+            }
+
+            filtered.sort((a, b) => {
+                // Sort by completed (pending first), then by date
+                if (a.completed !== b.completed) return a.completed ? 1 : -1;
+                return new Date(a.tanggal) - new Date(b.tanggal);
+            });
+
+            if (filtered.length === 0) {
                 memoList.innerHTML = `
                     <div class="empty-state">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -817,10 +1171,11 @@
                 return;
             }
 
-            // Render Kartu Memo
-            memos.forEach(memo => {
+            filtered.forEach(memo => {
                 const card = document.createElement('div');
-                card.className = 'memo-card';
+                const priorityClass = memo.priority ? `priority-${memo.priority}` : '';
+                const completedClass = memo.completed ? 'completed' : '';
+                card.className = `memo-card ${priorityClass} ${completedClass}`;
                 card.innerHTML = `
                     <div class="corner-decoration corner-tl"></div>
                     <div class="corner-decoration corner-tr"></div>
@@ -828,22 +1183,45 @@
                     <div class="corner-decoration corner-br"></div>
                     <div class="memo-header">
                         <span class="memo-date">${formatDisplayDate(memo.tanggal)}</span>
-                        <span class="memo-category">${memo.kategori}</span>
+                        <div class="memo-badges">
+                            <span class="badge badge-category">${memo.kategori}</span>
+                            ${memo.priority ? `<span class="badge badge-priority-${memo.priority}">${memo.priority}</span>` : ''}
+                            ${memo.completed ? '<span class="badge" style="background:rgba(0,255,136,0.1);color:var(--success);border:1px solid rgba(0,255,136,0.2)">DONE</span>' : ''}
+                        </div>
                     </div>
                     <div class="memo-body">
                         ${memo.catatan}
                     </div>
+                    <div class="memo-meta">
+                        <span>${formatTimeAgo(memo.createdAt || memo.tanggal)}</span>
+                        <span>${memo.updatedAt ? 'Edited: ' + formatTimeAgo(memo.updatedAt) : ''}</span>
+                    </div>
                     <div class="memo-actions">
+                        <button class="btn-sm btn-done ${memo.completed ? 'undone' : ''}" onclick="toggleDone(${memo.id})">
+                            ${memo.completed ? 'Undo' : 'Done'}
+                        </button>
                         <button class="btn-sm btn-edit" onclick="editMemo(${memo.id})">Edit</button>
-                        <button class="btn-sm btn-delete" onclick="deleteMemo(${memo.id})">Hapus</button>
+                        <button class="btn-sm btn-delete" onclick="openModal(${memo.id})">Hapus</button>
                     </div>
                 `;
                 memoList.appendChild(card);
             });
         }
 
+        // ===== 8. TOGGLE DONE =====
+        window.toggleDone = function(id) {
+            const index = memos.findIndex(m => m.id === id);
+            if (index !== -1) {
+                memos[index].completed = !memos[index].completed;
+                memos[index].completedAt = memos[index].completed ? new Date().toISOString() : null;
+                saveToStorage();
+                renderMemos();
+                updateDashboard();
+                showToast(memos[index].completed ? 'Aktivitas diselesaikan!' : 'Aktivitas dibuka kembali', 'success');
+            }
+        };
 
-        // --- 4. FITUR CREATE & UPDATE (SIMPAN DATA) ---
+        // ===== 9. FITUR CREATE & UPDATE =====
         memoForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -851,31 +1229,43 @@
             const tanggal = document.getElementById('tanggal').value;
             const kategori = document.getElementById('kategori').value;
             const catatan = document.getElementById('catatan').value;
+            const priority = document.getElementById('priority').value;
 
             if (idInput) {
-                // Proses UPDATE data yang sudah ada
                 const index = memos.findIndex(m => m.id === parseInt(idInput));
                 if (index !== -1) {
-                    memos[index] = { id: parseInt(idInput), tanggal, kategori, catatan };
+                    memos[index] = {
+                        ...memos[index],
+                        tanggal,
+                        kategori,
+                        catatan,
+                        priority,
+                        updatedAt: new Date().toISOString()
+                    };
                 }
+                showToast('Memo berhasil diupdate!', 'success');
             } else {
-                // Proses CREATE data baru
                 const newMemo = {
-                    id: Date.now(), // Generate ID unik menggunakan timestamp
+                    id: Date.now(),
                     tanggal,
                     kategori,
-                    catatan
+                    catatan,
+                    priority,
+                    completed: false,
+                    createdAt: new Date().toISOString(),
+                    updatedAt: null
                 };
                 memos.push(newMemo);
+                showToast('Memo baru ditambahkan!', 'success');
             }
 
             saveToStorage();
             renderMemos();
+            updateDashboard();
             resetForm();
         });
 
-
-        // --- 5. FITUR EDIT (MENGISI FORM) ---
+        // ===== 10. FITUR EDIT =====
         window.editMemo = function(id) {
             const memo = memos.find(m => m.id === id);
             if (memo) {
@@ -883,47 +1273,73 @@
                 document.getElementById('tanggal').value = memo.tanggal;
                 document.getElementById('kategori').value = memo.kategori;
                 document.getElementById('catatan').value = memo.catatan;
+                setPriority(memo.priority || 'medium');
 
                 formTitle.textContent = 'Edit Aktivitas';
                 submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Update Memo';
                 cancelBtn.style.display = 'block';
-
-                // Scroll ke form (untuk mobile)
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         };
 
+        // ===== 11. EXPORT DATA =====
+        window.exportData = function() {
+            if (memos.length === 0) {
+                showToast('Tidak ada data untuk di-export!', 'error');
+                return;
+            }
+            const dataStr = JSON.stringify(memos, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `memo_danar_${formatForInput(new Date())}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('Data berhasil di-export!', 'success');
+        };
 
-        // --- 6. FITUR DELETE (MENGHAPUS DATA) ---
-        window.deleteMemo = function(id) {
-            if (confirm('Yakin ingin menghapus memo ini? Data yang dihapus tidak dapat dikembalikan.')) {
-                // Saring array, buang data yang ID nya cocok
-                memos = memos.filter(m => m.id !== id);
+        // ===== 12. CLEAR ALL DATA =====
+        window.clearAllData = function() {
+            if (memos.length === 0) {
+                showToast('Tidak ada data untuk dihapus!', 'error');
+                return;
+            }
+            if (confirm('Yakin ingin menghapus SEMUA data? Ini tidak bisa dibatalkan!')) {
+                memos = [];
                 saveToStorage();
                 renderMemos();
-
-                // Jika sedang mengedit data yang ternyata dihapus, reset form
-                if(document.getElementById('memoId').value == id) {
-                    resetForm();
-                }
+                updateDashboard();
+                resetForm();
+                showToast('Semua data dihapus!', 'success');
             }
         };
 
-
-        // --- 7. RESET FORM KE KONDISI AWAL ---
+        // ===== 13. RESET FORM =====
         function resetForm() {
             memoForm.reset();
             document.getElementById('memoId').value = '';
-            dateInput.value = formatForInput(today); // Kembalikan ke hari ini
-
+            dateInput.value = formatForInput(today);
+            setPriority('medium');
             formTitle.textContent = 'Tambah Aktivitas Baru';
             submitBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Simpan Memo';
             cancelBtn.style.display = 'none';
         }
 
-        // Render data pertama kali saat halaman dimuat
-        renderMemos();
+        // ===== 14. CLOCK =====
+        function updateClock() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('systemStatus').textContent = `SYSTEM ONLINE | ${timeStr}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
+        // ===== INIT =====
+        renderMemos();
+        updateDashboard();
     </script>
 </body>
 </html>
